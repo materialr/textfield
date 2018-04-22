@@ -1,0 +1,56 @@
+{
+  "name": "@materialr/textfield",
+  "version": "0.0.0-development",
+  "description": "Material textfield implementation for React",
+  "main": "lib/index.js",
+  "scripts": {
+    "build:production": "babel src --out-dir lib --ignore **/*.test.js,**/*.test.jsx",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "lint": "eslint --ext .js .",
+    "semantic-release": "semantic-release",
+    "test": "npm run lint && npm run test:vulnerabilities && npm run test:scripts",
+    "test:scripts": "jest --coverage --config ./jest.config.json",
+    "test:vulnerabilities": "nsp check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/materialr/textfield.git"
+  },
+  "keywords": [
+    "React",
+    "Material",
+    "Typography"
+  ],
+  "author": "Hendrik Volschenk <righteous.trespasser@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/materialr/textfield/issues"
+  },
+  "homepage": "https://github.com/materialr/textfield#readme",
+  "dependencies": {
+    "@material/textfield": "^0.34.1",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
+    "nsp": "^3.2.1",
+    "react-dom": "^16.3.1",
+    "semantic-release": "^15.1.7"
+  }
+}
