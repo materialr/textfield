@@ -49,7 +49,7 @@ test('Starts manual validation when the component updates', () => {
   const expected = 1;
   instance.textFieldSetValid = textFieldSetValid;
 
-  instance.componentDidUpdate({ isValid: false });
+  instance.componentDidUpdate({ valid: false });
   const actual = textFieldSetValid.mock.calls.length;
 
   expect(actual).toBe(expected);
@@ -78,7 +78,7 @@ test('\'getClassNames()\' returns the necessary list of classNames', () => {
       className={CLASS_NAME}
       disabled
       icon="icon"
-      isFullWidth
+      fullWidth
       label={LABEL}
     />,
     { disableLifecycleMethods: true },
@@ -104,7 +104,7 @@ test('\'getClassNames()\' returns the classNames for an end aligned icon', () =>
   const isOutlined = jest.fn();
   const isTextArea = jest.fn();
   const wrapper = shallow(
-    <TextField icon="icon" isIconAlignedEnd label={LABEL} />,
+    <TextField icon="icon" iconAlignEnd label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -136,7 +136,7 @@ test('\'getClassNamesFloatingLabel()\' returns the classNames for the floating l
 
 test('\'getClassNamesHelperText()\' returns the classNames for the helper text', () => {
   const wrapper = shallow(
-    <TextField isHelperTextPersistent isHelperTextValidationMessage label={LABEL} />,
+    <TextField helperTextPersistent helperTextValidationMessage label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -182,7 +182,7 @@ test('\'hasFloatingLabel()\' returns true when label exists and not full width',
 test('\'hasFloatingLabel()\' returns true when label exists and full width and is textarea', () => {
   const isTextArea = jest.fn();
   const wrapper = shallow(
-    <TextField isFullWidth label={LABEL} type="textarea" />,
+    <TextField fullWidth label={LABEL} type="textarea" />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -197,7 +197,7 @@ test('\'hasFloatingLabel()\' returns true when label exists and full width and i
 
 test('\'hasIcon()\' returns true when icon and box', () => {
   const wrapper = shallow(
-    <TextField icon="icon" isBox label={LABEL} />,
+    <TextField box icon="icon" label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -210,7 +210,7 @@ test('\'hasIcon()\' returns true when icon and box', () => {
 
 test('\'hasIcon()\' returns true when icon and outlined', () => {
   const wrapper = shallow(
-    <TextField icon="icon" isOutlined label={LABEL} />,
+    <TextField icon="icon" label={LABEL} outlined />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -301,7 +301,7 @@ test('\'iconAddOnClick()\' does not add an onClick listener to the icon', () => 
 
 test('\'isBox()\' returns true when box and not full width and not outlined', () => {
   const isOutlined = jest.fn();
-  const wrapper = shallow(<TextField isBox label={LABEL} />, { disableLifecycleMethods: true });
+  const wrapper = shallow(<TextField box label={LABEL} />, { disableLifecycleMethods: true });
   const instance = wrapper.instance();
   const expected = true;
   isOutlined.mockReturnValue(false);
@@ -314,7 +314,7 @@ test('\'isBox()\' returns true when box and not full width and not outlined', ()
 
 test('\'isBox()\' returns false when box and not full width and outlined', () => {
   const isOutlined = jest.fn();
-  const wrapper = shallow(<TextField isBox label={LABEL} />, { disableLifecycleMethods: true });
+  const wrapper = shallow(<TextField box label={LABEL} />, { disableLifecycleMethods: true });
   const instance = wrapper.instance();
   const expected = false;
   isOutlined.mockReturnValue(true);
@@ -328,7 +328,7 @@ test('\'isBox()\' returns false when box and not full width and outlined', () =>
 test('\'isBox()\' returns false when box and full width and not outlined', () => {
   const isOutlined = jest.fn();
   const wrapper = shallow(
-    <TextField isBox isFullWidth label={LABEL} />,
+    <TextField box fullWidth label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -359,7 +359,7 @@ test('\'isBox()\' returns false when not box and not full width and not outlined
 
 test('\'isOutlined()\' returns true when outlined and not full width', () => {
   const wrapper = shallow(
-    <TextField isOutlined label={LABEL} />,
+    <TextField outlined label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -372,7 +372,7 @@ test('\'isOutlined()\' returns true when outlined and not full width', () => {
 
 test('\'isOutlined()\' returns false when outlined and full width', () => {
   const wrapper = shallow(
-    <TextField isFullWidth isOutlined label={LABEL} />,
+    <TextField fullWidth outlined label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -418,7 +418,7 @@ test('\'isTextArea()\' returns false when the type is not \'textarea\'', () => {
 
 test('\'textFieldSetValid()\' sets the text field as valid when not undefined', () => {
   const wrapper = shallow(
-    <TextField isValid label={LABEL} />,
+    <TextField valid label={LABEL} />,
     { disableLifecycleMethods: true },
   );
   const instance = wrapper.instance();
@@ -444,7 +444,7 @@ test('\'textFieldSetValid()\' sets the text field as valid when not undefined', 
 });
 
 test('Reners the correct elements', () => {
-  const wrapper = mount(<TextField helperText="helperText" icon="icon" isBox label={LABEL} />);
+  const wrapper = mount(<TextField box helperText="helperText" icon="icon" label={LABEL} />);
   const expected = true;
 
   const actual = wrapper.exists();

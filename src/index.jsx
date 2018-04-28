@@ -38,9 +38,9 @@ class TextField extends React.Component {
     this.textFieldSetValid();
     this.iconAddOnClick();
   }
-  componentDidUpdate({ isValid }) {
-    const { isValid: previousIsValid } = this.props;
-    if (isValid !== previousIsValid) {
+  componentDidUpdate({ valid }) {
+    const { valid: previousIsValid } = this.props;
+    if (valid !== previousIsValid) {
       this.textFieldSetValid();
     }
   }
@@ -52,18 +52,18 @@ class TextField extends React.Component {
       className,
       disabled,
       icon,
-      isFullWidth,
-      isIconAlignedEnd,
+      fullWidth,
+      iconAlignEnd,
     } = this.props;
     return classnames({
       'mdc-text-field': true,
       'mdc-text-field--box': this.isBox(),
       'mdc-text-field--disabled': disabled,
-      'mdc-text-field--fullwidth': isFullWidth,
+      'mdc-text-field--fullwidth': fullWidth,
       'mdc-text-field--outlined': this.isOutlined(),
       'mdc-text-field--textarea': this.isTextArea(),
-      'mdc-text-field--with-leading-icon': !!icon && !isIconAlignedEnd,
-      'mdc-text-field--with-trailing-icon': !!icon && isIconAlignedEnd,
+      'mdc-text-field--with-leading-icon': !!icon && !iconAlignEnd,
+      'mdc-text-field--with-trailing-icon': !!icon && iconAlignEnd,
       'mdc-typography': true,
       [className]: !!className,
     });
@@ -75,11 +75,11 @@ class TextField extends React.Component {
     });
   }
   getClassNamesHelperText() {
-    const { isHelperTextPersistent, isHelperTextValidationMessage } = this.props;
+    const { helperTextPersistent, helperTextValidationMessage } = this.props;
     return classnames({
       'mdc-text-field-helper-text': true,
-      'mdc-text-field-helper-text--persistent': isHelperTextPersistent,
-      'mdc-text-field-helper-text--validation-msg': isHelperTextValidationMessage,
+      'mdc-text-field-helper-text--persistent': helperTextPersistent,
+      'mdc-text-field-helper-text--validation-msg': helperTextValidationMessage,
       'mdc-typography': true,
     });
   }
@@ -87,12 +87,12 @@ class TextField extends React.Component {
     return this.props.id || this.state.id;
   }
   hasFloatingLabel() {
-    const { isFullWidth } = this.props;
-    return !isFullWidth || this.isTextArea();
+    const { fullWidth } = this.props;
+    return !fullWidth || this.isTextArea();
   }
   hasIcon() {
-    const { icon, isBox, isOutlined } = this.props;
-    return !!icon && (isBox || isOutlined);
+    const { icon, box, outlined } = this.props;
+    return !!icon && (box || outlined);
   }
   iconAddOnClick() {
     if (this.hasIcon()) {
@@ -100,20 +100,20 @@ class TextField extends React.Component {
     }
   }
   isBox() {
-    const { isOutlined, props: { isBox, isFullWidth } } = this;
-    return isBox && !isFullWidth && !isOutlined();
+    const { isOutlined, props: { box, fullWidth } } = this;
+    return box && !fullWidth && !isOutlined();
   }
   isOutlined() {
-    const { isFullWidth, isOutlined } = this.props;
-    return isOutlined && !isFullWidth;
+    const { fullWidth, outlined } = this.props;
+    return outlined && !fullWidth;
   }
   isTextArea() {
     return this.props.type === 'textarea';
   }
   textFieldSetValid() {
-    const { isValid } = this.props;
-    if (isValid !== undefined) {
-      this.textField.valid = isValid;
+    const { valid } = this.props;
+    if (valid !== undefined) {
+      this.textField.valid = valid;
     }
   }
   render() {
@@ -124,13 +124,13 @@ class TextField extends React.Component {
       getId,
       hasFloatingLabel,
       hasIcon,
+      isOutlined,
       isTextArea,
       props: {
         disabled,
         helperText,
         icon,
-        isFullWidth,
-        isOutlined,
+        fullWidth,
         label,
         lengthMaximum,
         lengthMinimum,
@@ -173,7 +173,7 @@ class TextField extends React.Component {
             onDragStart={onDragStart}
             onDrop={onDrop}
             onFocus={onFocus}
-            placeholder={isFullWidth ? label : undefined}
+            placeholder={fullWidth ? label : undefined}
             required={required}
             type={type}
             value={value}
@@ -198,13 +198,14 @@ class TextField extends React.Component {
             >
               {value}
             </textarea>}
-          {hasFloatingLabel() &&
+          {hasFloatingLabel() && (
+            // eslint-disable-next-line jsx-a11y/label-has-for
             <label className={getClassNamesFloatingLabel()} htmlFor={getId()}>
               {label}
             </label>
-          }
-          {!isOutlined && <div className={TextField.getClassNamesLineRipple()} />}
-          {isOutlined &&
+          )}
+          {!isOutlined() && <div className={TextField.getClassNamesLineRipple()} />}
+          {isOutlined() &&
             <React.Fragment>
               <div className={TextField.getClassNamesNotchedOutline()}>
                 <svg><path className="mdc-notched-outline__path" /></svg>
@@ -224,18 +225,16 @@ class TextField extends React.Component {
 }
 
 TextField.propTypes = {
+  box: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   helperText: PropTypes.string,
+  helperTextPersistent: PropTypes.bool,
+  helperTextValidationMessage: PropTypes.bool,
   icon: PropTypes.string,
+  iconAlignEnd: PropTypes.bool,
   id: PropTypes.string,
-  isBox: PropTypes.bool,
-  isFullWidth: PropTypes.bool,
-  isHelperTextPersistent: PropTypes.bool,
-  isHelperTextValidationMessage: PropTypes.bool,
-  isIconAlignedEnd: PropTypes.bool,
-  isOutlined: PropTypes.bool,
-  isValid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   lengthMaximum: PropTypes.number,
   lengthMinimum: PropTypes.number,
@@ -245,24 +244,24 @@ TextField.propTypes = {
   onDrop: PropTypes.func,
   onFocus: PropTypes.func,
   onIconClick: PropTypes.func,
+  outlined: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
+  valid: PropTypes.bool,
   value: PropTypes.string,
 };
 
 TextField.defaultProps = {
+  box: false,
   className: undefined,
   disabled: false,
+  fullWidth: false,
   helperText: undefined,
+  helperTextPersistent: false,
+  helperTextValidationMessage: false,
   icon: undefined,
+  iconAlignEnd: false,
   id: undefined,
-  isBox: false,
-  isFullWidth: false,
-  isHelperTextPersistent: false,
-  isHelperTextValidationMessage: false,
-  isIconAlignedEnd: false,
-  isOutlined: false,
-  isValid: undefined,
   lengthMaximum: undefined,
   lengthMinimum: undefined,
   onBlur: undefined,
@@ -271,8 +270,10 @@ TextField.defaultProps = {
   onDrop: undefined,
   onFocus: undefined,
   onIconClick: undefined,
+  outlined: false,
   required: false,
   type: 'text',
+  valid: undefined,
   value: undefined,
 };
 
