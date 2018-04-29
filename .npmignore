@@ -9,4 +9,5 @@ src/
 .travis.yml
 docker-compose.yml
 Dockerfile
+jest.config.json
 package-lock.json
