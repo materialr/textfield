@@ -6,7 +6,7 @@
   "scripts": {
     "build:production": "babel src --out-dir lib --ignore **/*.test.js,**/*.test.jsx",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-    "lint": "eslint --ext .js .",
+    "lint": "eslint --ext .js --ext .jsx .",
     "semantic-release": "semantic-release",
     "test": "npm run lint && npm run test:vulnerabilities && npm run test:scripts",
     "test:scripts": "jest --coverage --config ./jest.config.json",
