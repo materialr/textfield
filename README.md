@@ -45,6 +45,7 @@ import TextField from '@materialr/textfield';
 | `label`                       | string          | Yes      | N/A        | The field's label                                              |
 | `lengthMaximum`               | number          | No       | undefined  | The maximum length of the field (HTML5 validation)             |
 | `lengthMinimum`               | number          | No       | undefined  | The minimum length of the field (HTML5 validation)             |
+| `name`                        | string          | No       | undefined  | The name attribute of the input element                                       |
 | `onBlur`                      | func            | No       | undefined  | The `blur` event handler                                       |
 | `onChange`                    | func            | No       | undefined  | The `change` event handler                                     |
 | `onDragStart`                 | func            | No       | undefined  | The `dragstart` event handler                                  |
