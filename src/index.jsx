@@ -134,6 +134,7 @@ class TextField extends React.Component {
         label,
         lengthMaximum,
         lengthMinimum,
+        name,
         onBlur,
         onChange,
         onDragStart,
@@ -168,6 +169,7 @@ class TextField extends React.Component {
             id={getId()}
             maxLength={lengthMaximum}
             minLength={lengthMinimum}
+            name={name}
             onBlur={onBlur}
             onChange={onChange}
             onDragStart={onDragStart}
@@ -187,6 +189,7 @@ class TextField extends React.Component {
               id={getId()}
               maxLength={lengthMaximum}
               minLength={lengthMinimum}
+              name={name}
               onBlur={onBlur}
               onChange={onChange}
               onDragStart={onDragStart}
@@ -238,6 +241,7 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   lengthMaximum: PropTypes.number,
   lengthMinimum: PropTypes.number,
+  name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onDragStart: PropTypes.func,
@@ -264,6 +268,7 @@ TextField.defaultProps = {
   id: undefined,
   lengthMaximum: undefined,
   lengthMinimum: undefined,
+  name: undefined,
   onBlur: undefined,
   onChange: undefined,
   onDragStart: undefined,
