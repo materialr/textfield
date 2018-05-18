@@ -451,3 +451,16 @@ test('Reners the correct elements', () => {
 
   expect(actual).toBe(expected);
 });
+
+test('Adds extra properties that are passed in', () => {
+  const DATA_QA = 'DATA_QA';
+  const wrapper = shallow(
+    <TextField data-qa={DATA_QA} label={LABEL} />,
+    { disableLifecycleMethods: true },
+  );
+  const expected = DATA_QA;
+
+  const actual = wrapper.find('div').at(0).props()['data-qa'];
+
+  expect(actual).toBe(expected);
+});

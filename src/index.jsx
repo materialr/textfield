@@ -127,10 +127,16 @@ class TextField extends React.Component {
       isOutlined,
       isTextArea,
       props: {
+        box,
+        className,
         disabled,
-        helperText,
-        icon,
         fullWidth,
+        helperText,
+        helperTextPersistent,
+        helperTextValidationMessage,
+        icon,
+        iconAlignEnd,
+        id,
         label,
         lengthMaximum,
         lengthMinimum,
@@ -140,9 +146,13 @@ class TextField extends React.Component {
         onDragStart,
         onDrop,
         onFocus,
+        onIconClick,
+        outlined,
         required,
         type,
+        valid,
         value,
+        ...props
       },
       state: { helperTextControlsId },
     } = this;
@@ -151,6 +161,7 @@ class TextField extends React.Component {
         <div
           className={getClassNames()}
           ref={(elementRoot) => { this.elementRoot = elementRoot; }}
+          {...props}
         >
           {hasIcon() &&
             <i
