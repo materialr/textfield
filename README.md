@@ -52,6 +52,7 @@ import TextField from '@materialr/textfield';
 | `onDrop`                      | func            | No       | undefined  | The `drop` event handler                                       |
 | `onFocus`                     | func            | No       | undefined  | The `focus` event handler                                      |
 | `onIconClick`                 | func            | No       | undefined  | The event handler when clicking on the `icon`                  |
+| `onKeyUp`                     | func            | No       | undefined  | The 'onkeyup' event handler                                    |
 | `outlined`                    | bool            | No       | false      | Whether to display the outline style field                     |
 | `required`                    | bool            | No       | false      | Whether the field is required (HTML5 validation)               |
 | `type`                        | string          | No       | text       | The field's type attribute (use `textarea` for a `<textarea>`) |
