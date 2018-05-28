@@ -147,6 +147,7 @@ class TextField extends React.Component {
         onDrop,
         onFocus,
         onIconClick,
+        onKeyUp,
         outlined,
         required,
         type,
@@ -186,6 +187,7 @@ class TextField extends React.Component {
             onDragStart={onDragStart}
             onDrop={onDrop}
             onFocus={onFocus}
+            onKeyUp={onKeyUp}
             placeholder={fullWidth ? label : undefined}
             required={required}
             type={type}
@@ -206,6 +208,7 @@ class TextField extends React.Component {
               onDragStart={onDragStart}
               onDrop={onDrop}
               onFocus={onFocus}
+              onKeyUp={onKeyUp}
               required={required}
               rows={8}
               columns={40}
@@ -259,6 +262,7 @@ TextField.propTypes = {
   onDrop: PropTypes.func,
   onFocus: PropTypes.func,
   onIconClick: PropTypes.func,
+  onKeyUp: PropTypes.func,
   outlined: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
@@ -285,6 +289,7 @@ TextField.defaultProps = {
   onDragStart: undefined,
   onDrop: undefined,
   onFocus: undefined,
+  onKeyUp: undefined,
   onIconClick: undefined,
   outlined: false,
   required: false,
