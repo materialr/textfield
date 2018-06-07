@@ -9,12 +9,6 @@ import '@material/textfield/mdc-text-field.scss';
 export const empty = () => {};
 
 class TextField extends React.Component {
-  static getClassNamesLineRipple() {
-    return classnames({ 'mdc-line-ripple': true });
-  }
-  static getClassNamesNotchedOutline() {
-    return classnames({ 'mdc-notched-outline': true });
-  }
   constructor(props) {
     super(props);
     this.state = { helperTextControlsId: uuidv1(), id: uuidv1() };
@@ -46,6 +40,12 @@ class TextField extends React.Component {
   }
   componentWillUnmount() {
     this.textField.destroy();
+  }
+  static getClassNamesLineRipple() {
+    return classnames({ 'mdc-line-ripple': true });
+  }
+  static getClassNamesNotchedOutline() {
+    return classnames({ 'mdc-notched-outline': true });
   }
   getClassNames() {
     const {
