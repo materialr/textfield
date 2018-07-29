@@ -129,6 +129,7 @@ class TextField extends React.Component {
       props: {
         box,
         className,
+        defaultValue,
         disabled,
         fullWidth,
         helperText,
@@ -177,6 +178,7 @@ class TextField extends React.Component {
             aria-controls={helperTextControlsId}
             aria-label={label}
             className="mdc-text-field__input"
+            defaultValue={defaultValue}
             disabled={disabled}
             id={getId()}
             maxLength={lengthMaximum}
@@ -198,6 +200,7 @@ class TextField extends React.Component {
               aria-controls={helperTextControlsId}
               aria-label={label}
               className="mdc-text-field__input"
+              defaultValue={defaultValue}
               disabled={disabled}
               id={getId()}
               maxLength={lengthMaximum}
@@ -244,6 +247,7 @@ class TextField extends React.Component {
 TextField.propTypes = {
   box: PropTypes.bool,
   className: PropTypes.string,
+  defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
   helperText: PropTypes.string,
@@ -273,6 +277,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
   box: false,
   className: undefined,
+  defaultValue: undefined,
   disabled: false,
   fullWidth: false,
   helperText: undefined,

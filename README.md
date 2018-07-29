@@ -34,6 +34,7 @@ import TextField from '@materialr/textfield';
 | ----------------------------- | --------------- | -------- | ---------- | -------------------------------------------------------------- |
 | `box`                         | bool            | No       | false      | Whether to render a box outline                                |
 | `className`                   | string          | No       | undefined  | Additional classNames to add                                   |
+| `defaultValue`                | string          | No       | undefined  | The default input value (uncontrolled element)                 |
 | `disabled`                    | bool            | No       | false      | Whether the input is disabled                                  |
 | `fullWidth`                   | bool            | No       | false      | Whether the input is the full width of it's parent             |
 | `helperText`                  | string          | No       | undefined  | The helper text to render beneath the field                    |
@@ -45,7 +46,7 @@ import TextField from '@materialr/textfield';
 | `label`                       | string          | Yes      | N/A        | The field's label                                              |
 | `lengthMaximum`               | number          | No       | undefined  | The maximum length of the field (HTML5 validation)             |
 | `lengthMinimum`               | number          | No       | undefined  | The minimum length of the field (HTML5 validation)             |
-| `name`                        | string          | No       | undefined  | The name attribute of the input element                                       |
+| `name`                        | string          | No       | undefined  | The name attribute of the input element                        |
 | `onBlur`                      | func            | No       | undefined  | The `blur` event handler                                       |
 | `onChange`                    | func            | No       | undefined  | The `change` event handler                                     |
 | `onDragStart`                 | func            | No       | undefined  | The `dragstart` event handler                                  |
