@@ -9,10 +9,17 @@ import '@material/textfield/mdc-text-field.scss';
 export const empty = () => {};
 
 class TextField extends React.Component {
+  static getClassNamesLineRipple() {
+    return classnames({ 'mdc-line-ripple': true });
+  }
+  static getClassNamesNotchedOutline() {
+    return classnames({ 'mdc-notched-outline': true });
+  }
   constructor(props) {
     super(props);
     this.state = { helperTextControlsId: uuidv1(), id: uuidv1() };
     this.elementIcon = undefined;
+    this.elementField = undefined;
     this.elementRoot = undefined;
     this.textField = undefined;
     this.getClassNames = this.getClassNames.bind(this);
@@ -40,12 +47,6 @@ class TextField extends React.Component {
   }
   componentWillUnmount() {
     this.textField.destroy();
-  }
-  static getClassNamesLineRipple() {
-    return classnames({ 'mdc-line-ripple': true });
-  }
-  static getClassNamesNotchedOutline() {
-    return classnames({ 'mdc-notched-outline': true });
   }
   getClassNames() {
     const {
@@ -85,6 +86,9 @@ class TextField extends React.Component {
   }
   getId() {
     return this.props.id || this.state.id;
+  }
+  focus() {
+    this.elementField.focus();
   }
   hasFloatingLabel() {
     const { fullWidth } = this.props;
@@ -191,6 +195,7 @@ class TextField extends React.Component {
             onFocus={onFocus}
             onKeyUp={onKeyUp}
             placeholder={fullWidth ? label : undefined}
+            ref={(elementField) => { this.elementField = elementField; }}
             required={required}
             type={type}
             value={value}
@@ -212,6 +217,7 @@ class TextField extends React.Component {
               onDrop={onDrop}
               onFocus={onFocus}
               onKeyUp={onKeyUp}
+              ref={(elementField) => { this.elementField = elementField; }}
               required={required}
               rows={8}
               columns={40}

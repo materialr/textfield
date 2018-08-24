@@ -452,6 +452,31 @@ test('Reners the correct elements', () => {
   expect(actual).toBe(expected);
 });
 
+test('Focuses the input field', () => {
+  const focus = jest.fn();
+  const wrapper = mount(<TextField label={LABEL} />);
+  const instance = wrapper.instance();
+  const { elementField } = instance;
+  const expected = 1;
+  elementField.focus = focus;
+
+  instance.focus();
+  const actual = focus.mock.calls.length;
+
+  expect(actual).toBe(expected);
+});
+
+test('Reners the correct elements', () => {
+  const wrapper = mount(
+    <TextField box helperText="helperText" icon="icon" label={LABEL} type="textarea" />,
+  );
+  const expected = true;
+
+  const actual = wrapper.exists();
+
+  expect(actual).toBe(expected);
+});
+
 test('Adds extra properties that are passed in', () => {
   const DATA_QA = 'DATA_QA';
   const wrapper = shallow(
