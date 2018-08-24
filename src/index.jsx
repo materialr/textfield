@@ -16,6 +16,7 @@ class TextField extends React.Component {
     this.elementField = undefined;
     this.elementRoot = undefined;
     this.textField = undefined;
+    this.focus = this.focus.bind(this);
     this.getClassNames = this.getClassNames.bind(this);
     this.getClassNamesFloatingLabel = this.getClassNamesFloatingLabel.bind(this);
     this.getClassNamesHelperText = this.getClassNamesHelperText.bind(this);
