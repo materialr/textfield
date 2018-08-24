@@ -13,8 +13,10 @@ class TextField extends React.Component {
     super(props);
     this.state = { helperTextControlsId: uuidv1(), id: uuidv1() };
     this.elementIcon = undefined;
+    this.elementField = undefined;
     this.elementRoot = undefined;
     this.textField = undefined;
+    this.focus = this.focus.bind(this);
     this.getClassNames = this.getClassNames.bind(this);
     this.getClassNamesFloatingLabel = this.getClassNamesFloatingLabel.bind(this);
     this.getClassNamesHelperText = this.getClassNamesHelperText.bind(this);
@@ -85,6 +87,9 @@ class TextField extends React.Component {
   }
   getId() {
     return this.props.id || this.state.id;
+  }
+  focus() {
+    this.elementField.focus();
   }
   hasFloatingLabel() {
     const { fullWidth } = this.props;
@@ -191,6 +196,7 @@ class TextField extends React.Component {
             onFocus={onFocus}
             onKeyUp={onKeyUp}
             placeholder={fullWidth ? label : undefined}
+            ref={(elementField) => { this.elementField = elementField; }}
             required={required}
             type={type}
             value={value}
@@ -212,6 +218,7 @@ class TextField extends React.Component {
               onDrop={onDrop}
               onFocus={onFocus}
               onKeyUp={onKeyUp}
+              ref={(elementField) => { this.elementField = elementField; }}
               required={required}
               rows={8}
               columns={40}
